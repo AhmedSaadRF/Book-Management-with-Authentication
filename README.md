@@ -70,32 +70,39 @@ npm start
 nodemon index.js
 Server runs on http://localhost:3300 (or your defined port).
 
-📡 API Endpoints
-Authentication & Users
-Method	Endpoint	Description	Auth required
-POST	/register	Register a new user	❌
-POST	/login	Login user, returns JWT token	❌
-GET	/users	Get all users (admin only)	✅ (future)
-Request examples:
+## 📡 API Endpoints
 
-POST /register
-Body: { "username": "john", "email": "john@example.com", "password": "123456" }
+### Authentication & Users
 
-POST /login
-Body: { "email": "john@example.com", "password": "123456" }
-Response: { "token": "eyJhbGc...", "user": {...} }
+| Method | Endpoint     | Description                     | Auth required |
+|--------|--------------|---------------------------------|---------------|
+| POST   | `/register`  | Register a new user             | ❌            |
+| POST   | `/login`     | Login user, returns JWT token   | ❌            |
+| GET    | `/users`     | Get all users (admin only)      | ✅ (future)   |
 
-Books (protected routes – include token in Authorization header)
-Method	Endpoint	Description	Auth required
-GET	/books	Get all books of logged-in user	✅
-GET	/books/:id	Get a single book by ID	✅ (owner only)
-POST	/books	Create a new book	✅
-PUT	/books/:id	Update a book	✅ (owner only)
-DELETE	/books/:id	Delete a book	✅ (owner only)
-Request example (create book):
-POST /books
-Header: Authorization: Bearer <JWT_TOKEN>
-Body: { "title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937 }
+**Request examples:**
+
+- `POST /register`  
+  Body: `{ "username": "john", "email": "john@example.com", "password": "123456" }`
+
+- `POST /login`  
+  Body: `{ "email": "john@example.com", "password": "123456" }`  
+  Response: `{ "token": "eyJhbGc...", "user": {...} }`
+
+### Books (protected routes – include token in Authorization header)
+
+| Method | Endpoint       | Description                     | Auth required       |
+|--------|----------------|---------------------------------|---------------------|
+| GET    | `/books`       | Get all books of logged-in user | ✅                  |
+| GET    | `/books/:id`   | Get a single book by ID         | ✅ (owner only)     |
+| POST   | `/books`       | Create a new book               | ✅                  |
+| PUT    | `/books/:id`   | Update a book                   | ✅ (owner only)     |
+| DELETE | `/books/:id`   | Delete a book                   | ✅ (owner only)     |
+
+**Request example (create book):**  
+`POST /books`  
+Header: `Authorization: Bearer <JWT_TOKEN>`  
+Body: `{ "title": "The Hobbit", "author": "J.R.R. Tolkien", "year": 1937 }`
 
 🧪 Testing with Postman / cURL
 Register a user.
